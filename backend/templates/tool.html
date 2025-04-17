@@ -1,0 +1,28 @@
+<h2>Ask Me! (AI-powered Search)</h2>
+<input type="text" id="ai_question" placeholder="Ask anything...">
+<button onclick="askAI()">Ask AI</button>
+<p id="ai_response"></p>
+
+<script>
+    function askAI() {
+        const question = document.getElementById('ai_question').value;
+        $.post('/ask_ai', { question: question }, function(data) {
+            $('#ai_response').text("AI Response: " + data.ai_response);
+        });
+    }
+</script>
+<h2>Generalize Expressions (LGG)</h2>
+<input type="text" id="expr1" placeholder="Enter first expression">
+<input type="text" id="expr2" placeholder="Enter second expression">
+<button onclick="generalizeExpressions()">Generalize</button>
+<p id="generalized_expr"></p>
+
+<script>
+    function generalizeExpressions() {
+        const expr1 = document.getElementById('expr1').value;
+        const expr2 = document.getElementById('expr2').value;
+        $.post('/generalize_expressions', { expr1: expr1, expr2: expr2 }, function(data) {
+            $('#generalized_expr').text("Generalized Expression: " + data.generalized_expression);
+        });
+    }
+</script>
